@@ -148,7 +148,7 @@ No indicators of compromise identified.
 
 ### KQL query 2 — Impossible travel
 ![KQL Query 2](../images/07-kql-query2-results.png)
-*Impossible travel detection query identifying sign-ins from geographically distant locations within a 60-minute window.*
+*Impossible travel detection query identifying sign-ins from geographically distant locations within a 60-minute window. No results shown as SigninLogs data aged out within the 7-day free tier retention window — this is a known constraint of the Entra ID free tier.*
 
 ### Analytics rules enabled
 ![Analytics Rules](../images/08-analytics-rules-enabled.png)
