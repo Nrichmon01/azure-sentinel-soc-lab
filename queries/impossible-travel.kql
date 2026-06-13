@@ -1,0 +1,20 @@
+// Query 2: Impossible Travel Detection
+// Purpose: Detect users authenticating from two geographically distant locations within 60 minutes
+// Table: AADNonInteractiveUserSignInLogs
+// Author: Richmond A. Nkrumah | CyberLab SOC Project 21
+
+AADNonInteractiveUserSignInLogs
+| where TimeGenerated > ago(7d)
+| where ResultType == "0"
+| project TimeGenerated, UserPrincipalName, IPAddress, Location, ResultType
+| order by UserPrincipalName, TimeGenerated asc
+| serialize
+| extend PrevLocation = prev(Location, 1),
+         PrevTime = prev(TimeGenerated, 1),
+         PrevUser = prev(UserPrincipalName, 1)
+| where UserPrincipalName == PrevUser
+| extend TimeDiffMinutes = datetime_diff('minute', TimeGenerated, PrevTime)
+| where TimeDiffMinutes <= 60
+| where Location != PrevLocation
+| project TimeGenerated, UserPrincipalName, IPAddress, 
+          Location, PrevLocation, TimeDiffMinutes

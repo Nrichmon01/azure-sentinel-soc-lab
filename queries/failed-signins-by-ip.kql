@@ -1,0 +1,12 @@
+// Query 1: Failed Sign-ins Grouped by IP Address
+// Purpose: Detect brute force attempts by identifying IPs with multiple failed sign-ins
+// Table: AADNonInteractiveUserSignInLogs
+// Author: Richmond A. Nkrumah | CyberLab SOC Project 21
+
+AADNonInteractiveUserSignInLogs
+| where TimeGenerated > ago(7d)
+| summarize FailedAttempts = countif(ResultType != "0"), 
+            SuccessfulAttempts = countif(ResultType == "0")
+            by IPAddress, UserPrincipalName
+| where FailedAttempts > 0
+| order by FailedAttempts desc
