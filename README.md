@@ -56,6 +56,7 @@ A hands-on cloud security lab deploying Microsoft Sentinel as a SIEM in Azure, c
 
 ## Repository structure
 
+```
 azure-sentinel-soc-lab/
 ├── README.md
 ├── architecture/
@@ -74,8 +75,9 @@ azure-sentinel-soc-lab/
 │   ├── 07-kql-query2-results.png
 │   └── 08-analytics-rules-enabled.png
 └── queries/
-├── failed-signins-by-ip.kql
-└── impossible-travel.kql
+    ├── failed-signins-by-ip.kql
+    └── impossible-travel.kql
+```
 
 ---
 
