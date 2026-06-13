@@ -134,14 +134,25 @@ No indicators of compromise identified.
 
 ## Supporting evidence
 
-| Artefact | Status |
-|---|---|
-| `images/04-entra-id-connector-connected.png` | ✅ |
-| `images/05-logs-flowing.png` | ✅ |
-| `images/06-kql-query1-results.png` | ✅ |
-| `images/07-kql-query2-results.png` | ✅ |
-| `images/08-analytics-rules-enabled.png` | ✅ |
-| `queries/failed-signins-by-ip.kql` | ✅ |
+### Entra ID connector connected
+![Entra ID connector](../images/04-entra-id-connector-connected.png)
+*Audit Logs and Non-Interactive Sign-in Logs successfully connected via the Entra ID Content Hub connector.*
+
+### Logs flowing into workspace
+![Logs flowing](../images/05-logs-flowing.png)
+*AADNonInteractiveUserSignInLogs confirming active data ingestion into cyberlab-law. SigninLogs from the initial session aged out within the 7-day free tier retention window — original results preserved in the KQL query screenshots below.*
+
+### KQL query 1 — Failed sign-ins by IP
+![KQL Query 1](../images/06-kql-query1-results.png)
+*Query grouping failed and successful sign-ins by IP address, revealing 301 events from 154.161.xxx.xxx (GH) — the trigger for the brute force analytics rule.*
+
+### KQL query 2 — Impossible travel
+![KQL Query 2](../images/07-kql-query2-results.png)
+*Impossible travel detection query identifying sign-ins from geographically distant locations within a 60-minute window.*
+
+### Analytics rules enabled
+![Analytics Rules](../images/08-analytics-rules-enabled.png)
+*Both analytics rules active in Sentinel — Brute Force (T1110) and Anomalous Sign-in Location (T1078).*
 
 ---
 
